@@ -20,7 +20,7 @@ function handleValidateSearch(e: MouseEvent) {
   loadingBar.start();
   searchValStatus.value = "";
   searchValFeedback.value = "";
-  if (backendDown) {
+  if (backendDown.value) {
     loadingBar.error();
     return;
   }
@@ -54,6 +54,7 @@ function DownloadBeatmap(sid?: string, bid?: string) {
   searchValFeedback.value = "正在获取铺面信息..";
   download(requestJson)
     .then((data) => {
+      console.log(data)
       if (data["code"] === 404) {
         cache(requestJson)
           .then((data) => {
@@ -142,7 +143,7 @@ onMounted(() => {
             v-model:value="searchInput"
             autofocus
             :readonly="backendDown"
-            @keydown.enter.prevent="backendDown"
+            @keydown.enter.prevent="handleValidateSearch"
           >
             <template #prefix>
               <n-icon :component="SearchOutline" />
