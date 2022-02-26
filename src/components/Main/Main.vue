@@ -153,7 +153,7 @@ export default defineComponent({
             v-model:value="searchInput"
             autofocus
             :readonly="backendDown"
-            @keydown.enter.prevent="backendDown ? handleValidateSearch : none"
+            @keydown.enter.prevent="backendDown"
           >
             <template #prefix>
               <n-icon :component="SearchOutline" />
