@@ -5,9 +5,6 @@ import { time, download, cache } from "@/api";
 import { AppProvider } from "@/components/Application";
 import { SearchOutline } from "@vicons/ionicons5";
 import { useLoadingBar } from "naive-ui";
-defineProps({
-  msg: String,
-});
 
 const loadingBar = useLoadingBar();
 const urlRegexFull = /^(?:https:\/\/)?osu.ppy.sh\/beatmapsets\/(?<sid>\d*)/;
@@ -130,14 +127,6 @@ function getBackendStatus() {
 
 onMounted(() => {
   getBackendStatus();
-});
-</script>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "Main",
-  components: {},
 });
 </script>
 

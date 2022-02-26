@@ -2,12 +2,21 @@
 import { FormInst, darkTheme } from "naive-ui";
 import { AppProvider } from "./components/Application";
 import { Main } from "./components/Main";
+import { Footer } from "./components/Footer";
 </script>
 
 <template>
   <n-config-provider :theme="darkTheme">
     <AppProvider>
-      <Main/>
+      <n-layout>
+        <n-layout-header></n-layout-header>
+        <n-layout-content>
+          <Main />
+        </n-layout-content>
+        <n-layout-footer>
+          <Footer />
+        </n-layout-footer>
+      </n-layout>
     </AppProvider>
   </n-config-provider>
 </template>
