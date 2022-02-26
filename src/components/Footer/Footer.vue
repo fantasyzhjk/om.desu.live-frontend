@@ -2,7 +2,7 @@
 
 <template>
   <div class="footer">
-    <n-a href="https://info.desu.life/">desu.life资讯站</n-a> |
+    <n-a href="https://info.desu.life/">资讯站</n-a> |
     <n-a href="https://mail.desu.life/">邮箱</n-a> |
     <n-a href="http://beian.miit.gov.cn/">陕ICP备2021013528号-2</n-a>
     <br />
