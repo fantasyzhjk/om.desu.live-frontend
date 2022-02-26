@@ -219,7 +219,7 @@ onMounted(() => {
   background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
-  background-image: url("@/assets/images/bg.png");
+  background-image: url("@/assets/images/bg.webp");
   background-position: center 0;
   background-repeat: no-repeat;
   width: 100vw;
