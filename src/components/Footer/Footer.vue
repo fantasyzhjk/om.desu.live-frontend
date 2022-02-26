@@ -20,9 +20,8 @@
   transform: translate(-50%, -150%);
 
   .n-a {
-    --n-text-color: #ffffffD1 !important;
+    --n-text-color: #ffffffd1 !important;
     text-decoration: none;
-    
   }
 }
 </style>

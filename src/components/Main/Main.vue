@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { FormInst, darkTheme } from "naive-ui";
 import { time, download, cache } from "@/api";
 import { AppProvider } from "@/components/Application";
 import { SearchOutline } from "@vicons/ionicons5";
@@ -18,7 +17,7 @@ const bgClass = ref("bg");
 
 function changeFocus(status: boolean) {
   bgClass.value = status ? "bg focus" : "bg";
-  clearFeedback()
+  clearFeedback();
 }
 
 function clearFeedback() {
@@ -202,6 +201,7 @@ onMounted(() => {
   .n-button {
     box-shadow: rgb(0 0 0 / 20%) 0 0 10px;
   }
+  transition: 0.25s;
 }
 
 .main {
@@ -225,12 +225,19 @@ onMounted(() => {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  transition: filter .25s,transform .25s;
+  transition: filter 0.25s, transform 0.25s;
 }
 
 .focus {
   filter: brightness(0.8);
   -webkit-filter: brightness(0.8);
   transform: scale(1.1);
+}
+
+@media screen and (max-aspect-ratio: 9/16) {
+  .searchForm {
+    min-width: 80vw;
+    transform: scale(1.2);
+  }
 }
 </style>

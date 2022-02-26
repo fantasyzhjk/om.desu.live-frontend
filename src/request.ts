@@ -66,11 +66,12 @@ const request = ({ method, url, data, config }) => {
       params: data,
       ...config,
     });
-  } else {  // 默认get请求
-      return instance.get(url, {
-        params: data,
-        ...config,
-      });
+  } else {
+    // 默认get请求
+    return instance.get(url, {
+      params: data,
+      ...config,
+    });
   }
 };
 export default request;

@@ -10,13 +10,5 @@
   </n-loading-bar-provider>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  name: "Application",
-  components: {},
-  setup() {
-    return {};
-  },
-});
+<script setup lang="ts">
 </script>
