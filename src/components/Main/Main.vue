@@ -14,12 +14,25 @@ const searchInput = ref("");
 const searchValStatus = ref("");
 const searchValFeedback = ref("");
 const backendDown = ref(true);
+const bgClass = ref("bg");
+
+function changeFocus(status: boolean) {
+  bgClass.value = status ? "bg focus" : "bg";
+  clearFeedback()
+}
+
+function clearFeedback() {
+  if (backendDown.value) {
+    return;
+  }
+  searchValStatus.value = "";
+  searchValFeedback.value = "";
+}
 
 function handleValidateSearch(e: MouseEvent) {
   e.preventDefault();
   loadingBar.start();
-  searchValStatus.value = "";
-  searchValFeedback.value = "";
+  clearFeedback();
   if (backendDown.value) {
     loadingBar.error();
     return;
@@ -140,6 +153,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <div :class="bgClass"></div>
   <div class="main">
     <n-form class="searchForm">
       <n-form-item :validation-status="searchValStatus">
@@ -151,6 +165,8 @@ onMounted(() => {
             v-model:value="searchInput"
             autofocus
             :readonly="backendDown"
+            @focus="changeFocus(true)"
+            @blur="changeFocus(false)"
             @keydown.enter.prevent="handleValidateSearch"
           >
             <template #prefix>
@@ -181,6 +197,10 @@ onMounted(() => {
   text-align: left;
   .n-input {
     background-color: rgba(0, 0, 0, 0.5) !important;
+    box-shadow: rgb(0 0 0 / 20%) 0 0 10px;
+  }
+  .n-button {
+    box-shadow: rgb(0 0 0 / 20%) 0 0 10px;
   }
 }
 
@@ -193,5 +213,24 @@ onMounted(() => {
   display: flex;
   z-index: 1;
   transform: translate(-50%, -200%);
+}
+
+.bg {
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-image: url("@/assets/images/bg.png");
+  background-position: center 0;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  transition: filter .25s,transform .25s;
+}
+
+.focus {
+  filter: brightness(0.8);
+  -webkit-filter: brightness(0.8);
+  transform: scale(1.1);
 }
 </style>

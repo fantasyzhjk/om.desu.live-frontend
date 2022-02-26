@@ -8,15 +8,8 @@ import { Footer } from "./components/Footer";
 <template>
   <n-config-provider :theme="darkTheme">
     <AppProvider>
-      <n-layout>
-        <n-layout-header></n-layout-header>
-        <n-layout-content>
-          <Main />
-        </n-layout-content>
-        <n-layout-footer>
-          <Footer />
-        </n-layout-footer>
-      </n-layout>
+      <Main />
+      <Footer />
     </AppProvider>
   </n-config-provider>
 </template>
@@ -35,15 +28,8 @@ body {
   color: #ffffff;
   font-size: 14px;
   background-color: #000;
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  background-position: center 0;
-  background-image: url("@/assets/images/bg.png");
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  backdrop-filter: brightness(0.8);
-  -webkit-backdrop-filter: brightness(0.8);
+  overflow: hidden;
 }
 </style>
