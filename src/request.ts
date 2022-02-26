@@ -3,7 +3,7 @@ import axios from "axios";
 //创建axios的一个实例
 var instance = axios.create({
   baseURL: "https://api.desu.life/", //接口统一域名
-  timeout: 12000, //设置超时
+  timeout: 6000, //设置超时
   headers: {
     "Content-Type": "application/json;charset=UTF-8;",
   },

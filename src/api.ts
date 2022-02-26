@@ -25,6 +25,8 @@ export const cache = (params: Object) => {
     url: "/cache",
     method: "get",
     data: params,
-    config: {},
+    config: {
+      timeout: 24000,
+    },
   });
 };
