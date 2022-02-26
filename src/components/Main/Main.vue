@@ -85,7 +85,7 @@ function DownloadBeatmap(sid?: string, bid?: string) {
             loadingBar.error();
           });
       } else if (data["code"] === 200) {
-        window.location.href = "http://om1.desu.life" + data["message"];
+        window.location.href = "https://om1.desu.life" + data["message"];
         searchValFeedback.value = "获取铺面成功..开始下载";
         loadingBar.finish();
         setTimeout(() => {

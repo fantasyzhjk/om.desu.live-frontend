@@ -40,7 +40,7 @@ body {
   -webkit-background-size: cover;
   -o-background-size: cover;
   background-position: center 0;
-  background-image: url("/images/bg.png");
+  background-image: url("@/assets/images/bg.png");
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   backdrop-filter: brightness(0.8);
