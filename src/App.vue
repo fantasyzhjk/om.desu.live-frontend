@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { createTheme, inputDark, buttonDark } from "naive-ui";
+import { createTheme, inputDark, buttonDark, loadingBarDark, formDark } from "naive-ui";
 import { AppProvider } from "./components/Application";
 import { Main } from "./components/Main";
 import { Footer } from "./components/Footer";
 
-const darkTheme = createTheme([inputDark, buttonDark])
+const darkTheme = createTheme([inputDark, buttonDark, loadingBarDark, formDark])
 
 </script>
 

@@ -28,7 +28,7 @@ function clearFeedback() {
   searchValFeedback.value = "";
 }
 
-function handleValidateSearch(e: MouseEvent) {
+function handleValidateSearch(e: KeyboardEvent | MouseEvent) {
   e.preventDefault();
   loadingBar.start();
   clearFeedback();
@@ -64,62 +64,55 @@ function DownloadBeatmap(sid?: string, bid?: string) {
     return false;
   }
   searchValFeedback.value = "正在获取谱面信息..";
-  download(requestJson)
+  let c = true;
+  setTimeout(() => {
+    if (c) searchValFeedback.value = "正在缓存谱面，请稍后..";
+  }, 4000);
+  cache(requestJson)
     .then((data) => {
-      if (data["code"] === 404) {
-        let c = true;
-        setTimeout(() => {
-          if (c) searchValFeedback.value = "正在缓存谱面，请稍后..";
-        }, 4000);
-        cache(requestJson)
-          .then((data) => {
-            switch (data["code"]) {
-              case 201:
-                c = false;
-                DownloadBeatmap(sid, bid);
-                break;
-              case 202:
-                c = false;
-                searchValStatus.value = "warning";
-                searchValFeedback.value = `该谱面已经在缓存了(缓存进度: ${data["message"]})，请稍后再试`;
-                loadingBar.finish();
-                break;
-              case 403:
-                c = false;
-                searchValStatus.value = "error";
-                searchValFeedback.value = "获取谱面失败，请检查输入是否正确";
-                loadingBar.error();
-                break;
-              default:
-                c = false;
-                searchValStatus.value = "error";
-                searchValFeedback.value = "缓存谱面时发生未知错误，请稍后再试";
-                loadingBar.error();
-                break;
-            }
-          })
-          .catch(() => {
-            c = false;
-            searchValStatus.value = "error";
-            searchValFeedback.value = "缓存谱面超时，请稍后再试";
-            loadingBar.error();
-          });
-      } else if (data["code"] === 200) {
-        window.location.href = "https://om1.desu.life" + data["message"];
-        searchValFeedback.value = "获取谱面成功..开始下载";
-        loadingBar.finish();
-        setTimeout(() => {
-          searchValFeedback.value = "";
-        }, 5000);
-      } else {
-        searchValStatus.value = "error";
-        searchValFeedback.value = "获取谱面失败，请稍后再试";
-        loadingBar.error();
+      switch (data["code"]) {
+        case 200:
+          c = false;
+          window.location.href = "https://om1.desu.life" + data["message"];
+          searchValFeedback.value = "获取谱面成功..开始下载";
+          loadingBar.finish();
+          setTimeout(() => {
+            searchValFeedback.value = "";
+          }, 5000);
+          break;
+        case 201:
+          c = false;
+          window.location.href = "https://om1.desu.life" + data["message"];
+          searchValFeedback.value = "获取谱面成功..开始下载";
+          loadingBar.finish();
+          setTimeout(() => {
+            searchValFeedback.value = "";
+          }, 5000);
+          break;
+        case 202:
+          c = false;
+          searchValStatus.value = "warning";
+          searchValFeedback.value = `该谱面已经在缓存了(缓存进度: ${data["message"]})，请稍后再试`;
+          loadingBar.finish();
+          break;
+        case 403:
+          c = false;
+          searchValStatus.value = "error";
+          searchValFeedback.value = "获取谱面失败，请检查输入是否正确";
+          loadingBar.error();
+          break;
+        default:
+          c = false;
+          searchValStatus.value = "error";
+          searchValFeedback.value = "缓存谱面时发生未知错误，请稍后再试";
+          loadingBar.error();
+          break;
       }
     })
     .catch(() => {
+      c = false;
       searchValStatus.value = "error";
-      searchValFeedback.value = "获取谱面失败，请稍后再试";
+      searchValFeedback.value = "缓存谱面超时，请稍后再试";
       loadingBar.error();
     });
 }

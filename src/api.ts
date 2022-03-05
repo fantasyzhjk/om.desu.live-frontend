@@ -13,7 +13,7 @@ export const time = () => {
 
 export const download = (params: Object) => {
   return request({
-    url: "/download",
+    url: "/query",
     method: "get",
     data: params,
     config: {},
